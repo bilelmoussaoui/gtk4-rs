@@ -31,10 +31,10 @@ jobs:
           git diff --cached --exit-code || git commit -m "Update gir/gir-files"
 
       - name: Run Python script to generate changes
-        run: python generate.py
+        run: python generator.py
+
       - name: Commit and push changes
         run: |
-          python ./generator.py
           git add .
           git diff --exit-code || git commit -m "Auto-generated changes from external repo merge"
           git push origin "auto-pr-branch" || echo "Branch already exists"
