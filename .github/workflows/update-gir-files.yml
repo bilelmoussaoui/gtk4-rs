@@ -34,7 +34,7 @@ jobs:
         run: python generate.py
       - name: Commit and push changes
         run: |
-          python ./generate.py
+          python ./generator.py
           git add .
           git diff --exit-code || git commit -m "Auto-generated changes from external repo merge"
           git push origin "auto-pr-branch" || echo "Branch already exists"
