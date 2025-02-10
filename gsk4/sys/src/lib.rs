@@ -2066,11 +2066,7 @@ extern "C" {
     //=========================================================================
     // GskNglRenderer
     //=========================================================================
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_get_type() -> GType;
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
