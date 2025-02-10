@@ -27,7 +27,8 @@ jobs:
 
       - name: Update Git submodules
         run: |
-          git submodule update --remote
+          cd ./gir && git fetch --all && git reset --hard origin/main && cd ../
+          cd ./gir-files && git fetch --all && git reset --hard origin/main && cd ../
           git add .
           git diff --cached --exit-code || git commit -m "Update gir/gir-files"
 
