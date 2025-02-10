@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::ffi;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandSurface")]
@@ -15,4 +16,12 @@ glib::wrapper! {
 
 impl WaylandSurface {
     pub const NONE: Option<&'static WaylandSurface> = None;
+
+    #[doc(alias = "gdk_wayland_surface_force_next_commit")]
+    pub fn force_next_commit(surface: &impl IsA<gdk::Surface>) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::gdk_wayland_surface_force_next_commit(surface.as_ref().to_glib_none().0);
+        }
+    }
 }
