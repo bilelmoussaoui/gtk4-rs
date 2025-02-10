@@ -28,17 +28,20 @@ jobs:
       - name: Update Git submodules
         run: |
           cd ./gir && git fetch --all && git reset --hard origin/main && cd ../
+          git add .
+          git diff --cached --exit-code || git commit -m "Update gir"
+          python generator.py
+          git add .
+          git diff --cached --exit-code || git commit -m "Regenerate with latest gir"
           cd ./gir-files && git fetch --all && git reset --hard origin/main && cd ../
           git add .
-          git diff --cached --exit-code || git commit -m "Update gir/gir-files"
-
-      - name: Run Python script to generate changes
-        run: python generator.py
-
-      - name: Commit and push changes
-        run: |
+          git diff --cached --exit-code || git commit -m "Update gir-files"
+          python generator.py
           git add .
-          git diff --exit-code || git commit -m "Auto-generated changes from external repo merge"
+          git diff --cached --exit-code || git commit -m "Regenerate with latest gir-files"
+
+      - name: Push changes
+        run: |
           git push origin "auto-pr-branch" || echo "Branch already exists"
 
       - name: Create Pull Request
