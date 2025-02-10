@@ -5,8 +5,7 @@ on:
     types: [gir-files-merge-event]
 
 jobs:
-  trigger-python-script:
-    if: ${{ github.event.workflow_run.actor == 'github-actions[bot]' && github.event.workflow_run.conclusion == 'success' }}
+  regen:
     runs-on: ubuntu-latest
 
     steps:
