@@ -1,10 +1,8 @@
 name: Trigger PR on Merge from External Repo
 
 on:
-  workflow_run:
-    workflows: ["CI Workflow Name"] # Replace with the CI workflow name in the external repo
-    types:
-      - completed
+  repository_dispatch:
+    types: [gir-files-merge-event]
 
 jobs:
   trigger-python-script:
